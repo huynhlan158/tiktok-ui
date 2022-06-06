@@ -1,0 +1,52 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 9px 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.03);
+  }
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 13px;
+}
+
+.info {
+  flex: 0 1 auto;
+}
+
+.username {
+  font-size: 1.6rem;
+  line-height: 19px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+
+  .verify-icon {
+    margin-left: 6px;
+    font-size: 1.4rem;
+    color: rgb(32, 213, 236);
+  }
+}
+
+.name {
+  font-size: 1.4rem;
+  line-height: 19px;
+  color: rgba(22, 24, 35, 0.5);
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

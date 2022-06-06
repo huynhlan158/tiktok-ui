@@ -7,13 +7,11 @@
 .container {
   width: var(--default-layout-width);
   min-height: 500px;
-  background-color: rgba(255, 255, 255, 1);
   display: flex;
   justify-content: space-between;
 }
 
 .content {
   flex: 1;
-  background-color: #111;
   min-height: 500px;
 }

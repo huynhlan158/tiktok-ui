@@ -6,6 +6,7 @@
   --dark: #333;
   --light-dark: #666;
   --black: black;
+  --white: white;
 
   // DefaultLayout
   --default-layout-header-height: 60px;
@@ -27,4 +28,17 @@ body {
   font-size: 1.6rem;
   line-height: 1.5;
   text-rendering: optimizeSpeed;
+  color: var(--dark);
+}
+
+button,
+input {
+  font-family: 'IBM Plex Sans', sans-serif;
+  outline: none;
+  border: none;
+}
+
+a[href] {
+  text-decoration: none;
+  color: var(--dark);
 }
