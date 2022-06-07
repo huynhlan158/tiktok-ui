@@ -4,9 +4,9 @@ import styles from './Menu.module.scss';
 
 const cx = classNames.bind(styles);
 
-function MenuItem({ data: { title, to, icon } }) {
+function MenuItem({ data: { title, to, icon }, onClick }) {
   return (
-    <Button menuItem left to={to} leftIcon={icon} style={{ marginLeft: 0 }}>
+    <Button menuItem left to={to} leftIcon={icon} onClick={onClick} style={{ marginLeft: 0 }}>
       {title}
     </Button>
   );

@@ -1,22 +1,59 @@
+import { useState } from 'react';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import MenuItem from './MenuItem';
 import styles from './Menu.module.scss';
+import Header from './Header';
 
 const cx = classNames.bind(styles);
 
-function Menu({ children, items = [] }) {
-  const renderItems = () => {
-    return items.map((item, index) => <MenuItem key={index} data={item} />);
+function Menu({ children, items = [], onChange = () => {} }) {
+  const [history, setHistory] = useState([{ data: items }]);
+  const current = history[history.length - 1];
+
+  const renderItems = (title = null) => {
+    return (
+      <>
+        {title && (
+          <Header
+            title={title}
+            icon={<FontAwesomeIcon icon={faChevronLeft} />}
+            onBack={() => {
+              setHistory((prev) => prev.slice(0, prev.length - 1));
+            }}
+          />
+        )}
+
+        {current.data.map((item, index) => {
+          const isParrent = !!item.children;
+
+          return (
+            <MenuItem
+              key={index}
+              data={item}
+              onClick={() => {
+                if (isParrent) {
+                  setHistory((prev) => prev.push(item.children));
+                } else {
+                  onChange(item);
+                }
+              }}
+            />
+          );
+        })}
+      </>
+    );
   };
 
   return (
     <Tippy
       render={(attrs) => (
         <div className={cx('container')} tabIndex="-1" {...attrs}>
-          <PopperWrapper className={cx('menu-popper')}>{renderItems()}</PopperWrapper>
+          <PopperWrapper className={cx('menu-popper')}>{renderItems(current.title)}</PopperWrapper>
         </div>
       )}
       delay={[0, 500]}

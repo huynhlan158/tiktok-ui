@@ -29,6 +29,10 @@ function Header() {
     }, 0);
   }, []);
 
+  const handleMenuChange = (menuItem) => {
+    console.log(menuItem);
+  };
+
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
@@ -72,7 +76,7 @@ function Header() {
           </Button>
           <Button primary>Log in</Button>
 
-          <PopperMenu items={HEADER_MENU_ITEMS}>
+          <PopperMenu items={HEADER_MENU_ITEMS} onChange={handleMenuChange}>
             <button className={cx('help-btn')}>
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </button>
