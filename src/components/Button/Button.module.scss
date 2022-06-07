@@ -22,9 +22,23 @@
     opacity: 0.5;
   }
 
+  i {
+    width: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
   i + span,
   span + i {
     margin-left: 9px;
+  }
+
+  &.left {
+    justify-content: flex-start;
+  }
+
+  &.right {
+    justify-content: flex-end;
   }
 }
 
@@ -50,6 +64,17 @@
 .outlined {
   border-color: rgba(22, 24, 35, 0.12);
   color: #161823;
+
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.03);
+  }
+}
+
+.menuItem {
+  min-height: 42px;
+  width: 100%;
+  padding: 9px 16px;
+  border-radius: 0;
 
   &:hover {
     background-color: rgba(22, 24, 35, 0.03);

@@ -11,11 +11,12 @@ import {
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
 
-import { Wrapper as PopperWrapper } from '~/components/Popper';
+import { Menu as PopperMenu, Wrapper as PopperWrapper } from '~/components/Popper';
 import images from '~/assets/images';
 import styles from './Header.module.scss';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
+import { HEADER_MENU_ITEMS } from '~/assets/constants';
 
 const cx = classNames.bind(styles);
 
@@ -70,7 +71,12 @@ function Header() {
             Upload
           </Button>
           <Button primary>Log in</Button>
-          <FontAwesomeIcon icon={faEllipsisVertical} />
+
+          <PopperMenu items={HEADER_MENU_ITEMS}>
+            <button className={cx('help-btn')}>
+              <FontAwesomeIcon icon={faEllipsisVertical} />
+            </button>
+          </PopperMenu>
         </div>
       </div>
     </header>
