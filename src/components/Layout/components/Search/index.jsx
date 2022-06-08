@@ -6,6 +6,7 @@ import styles from './Search.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import { ClearIcon, LoadingIcon, SearchIcon } from '~/components/Icons';
+import { useDebounce } from '~/hooks';
 
 const cx = classNames.bind(styles);
 
@@ -14,6 +15,7 @@ function Search() {
   const [searchText, setSearchText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showResult, setShowResult] = useState(true);
+  const [searchTextDebounced] = useDebounce(searchText, 500);
 
   const inputSearchRef = useRef('');
 
@@ -35,16 +37,16 @@ function Search() {
 
     setIsLoading(true);
 
-    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchText)}&type=less`)
+    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchTextDebounced)}&type=less`)
       .then((res) => res.json())
       .then((res) => {
-        if (searchText) {
+        if (searchTextDebounced) {
           setSearchResult(res.data);
         }
         setIsLoading(false);
       })
       .catch(() => setIsLoading(false));
-  }, [searchText]);
+  }, [searchTextDebounced]);
 
   console.log({ searchText, searchResult });
 
