@@ -116,14 +116,28 @@
 }
 
 .action-btn {
+  position: relative;
   font-size: 2.2rem;
-  width: 30px;
   display: flex;
   justify-content: center;
-  padding: 4px 10px;
+  padding: 5px;
   cursor: pointer;
   color: var(--dark);
-  margin-right: 15px;
+  margin-right: 10px;
+
+  .badge {
+    position: absolute;
+    background-color: var(--primary);
+    top: -3px;
+    right: 0px;
+    height: 20px;
+    color: var(--white);
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 18px;
+    padding: 2px 6px;
+    border-radius: 10px;
+  }
 }
 
 .action-tooltip {
@@ -135,6 +149,6 @@
   height: 32px;
   object-fit: cover;
   border-radius: 50%;
-  margin-left: 10px;
+  margin-left: 15px;
   cursor: pointer;
 }

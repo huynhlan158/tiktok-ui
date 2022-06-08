@@ -1,27 +1,20 @@
 import { useEffect, useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCircleXmark,
-  faMagnifyingGlass,
-  faSpinner,
-  faEllipsisVertical,
-  faPlus,
-  faCloudArrowUp,
-  faCommentDots,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faSpinner, faEllipsisVertical, faPlus } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css'; // optional
-
+import 'tippy.js/dist/tippy.css';
 import HeadlessTippy from '@tippyjs/react/headless';
 
-import { Menu as PopperMenu, Wrapper as PopperWrapper } from '~/components/Popper';
-import images from '~/assets/images';
 import styles from './Header.module.scss';
+import images from '~/assets/images';
+import { HEADER_MENU_ITEMS, HEADER_USER_MENU_ITEMS } from '~/assets/constants';
+import { Menu as PopperMenu, Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
-import { HEADER_MENU_ITEMS, HEADER_USER_MENU_ITEMS } from '~/assets/constants';
+import { InboxIcon, MessageIcon, SearchIcon, UploadIcon } from '~/components/Icons';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -72,7 +65,7 @@ function Header() {
             <span className={cx('slash')}></span>
 
             <button className={cx('search-btn')}>
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
+              <SearchIcon />
             </button>
           </div>
         </HeadlessTippy>
@@ -82,12 +75,18 @@ function Header() {
             <>
               <Tippy content="Upload Video" delay={[0, 0]}>
                 <button className={cx('action-btn')}>
-                  <FontAwesomeIcon icon={faCloudArrowUp} />
+                  <UploadIcon />
                 </button>
               </Tippy>
               <Tippy content="Message" delay={[0, 0]}>
                 <button className={cx('action-btn')}>
-                  <FontAwesomeIcon icon={faCommentDots} />
+                  <MessageIcon />
+                </button>
+              </Tippy>
+              <Tippy content="Inbox" delay={[0, 0]}>
+                <button className={cx('action-btn')}>
+                  <InboxIcon />
+                  <span className={cx('badge')}>12</span>
                 </button>
               </Tippy>
             </>
@@ -102,9 +101,9 @@ function Header() {
 
           <PopperMenu items={currentuser ? HEADER_USER_MENU_ITEMS : HEADER_MENU_ITEMS} onChange={handleMenuChange}>
             {currentuser ? (
-              <img
+              <Image
                 className={cx('user-avatar')}
-                src="https://p9-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/59086ef86cf4aa1f8a08af97756a65f2~c5_300x300.webp?x-expires=1654657200&x-signature=JgL6fFDYx6eyz54w6tp2w214dLk%3D"
+                src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/fac92301a36c2275c99f393061ef04ca~c5_100x100.jpeg?x-expires=1654844400&x-signature=wi%2B9jM72HU41FcNw0%2FSQ%2Fv0K7BM%3D"
                 alt="user_avatar"
               />
             ) : (
