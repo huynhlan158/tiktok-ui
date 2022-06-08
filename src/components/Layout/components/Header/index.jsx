@@ -7,21 +7,28 @@ import {
   faSpinner,
   faEllipsisVertical,
   faPlus,
+  faCloudArrowUp,
+  faCommentDots,
 } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
-import Tippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'; // optional
+
+import HeadlessTippy from '@tippyjs/react/headless';
 
 import { Menu as PopperMenu, Wrapper as PopperWrapper } from '~/components/Popper';
 import images from '~/assets/images';
 import styles from './Header.module.scss';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
-import { HEADER_MENU_ITEMS } from '~/assets/constants';
+import { HEADER_MENU_ITEMS, HEADER_USER_MENU_ITEMS } from '~/assets/constants';
 
 const cx = classNames.bind(styles);
 
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
+
+  const currentuser = true;
 
   useEffect(() => {
     setTimeout(() => {
@@ -40,7 +47,7 @@ function Header() {
           <img src={images.logo} alt="tiktok_logo" />
         </div>
 
-        <Tippy
+        <HeadlessTippy
           render={(attrs) => (
             <div className={cx('search-result')} tabIndex="-1" {...attrs}>
               <PopperWrapper>
@@ -68,18 +75,43 @@ function Header() {
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
           </div>
-        </Tippy>
+        </HeadlessTippy>
 
         <div className={cx('actions')}>
-          <Button outlined leftIcon={<FontAwesomeIcon icon={faPlus} />} style={{ padding: '6px 16px' }}>
-            Upload
-          </Button>
-          <Button primary>Log in</Button>
+          {currentuser ? (
+            <>
+              <Tippy content="Upload Video" delay={[0, 0]}>
+                <button className={cx('action-btn')}>
+                  <FontAwesomeIcon icon={faCloudArrowUp} />
+                </button>
+              </Tippy>
+              <Tippy content="Message" delay={[0, 0]}>
+                <button className={cx('action-btn')}>
+                  <FontAwesomeIcon icon={faCommentDots} />
+                </button>
+              </Tippy>
+            </>
+          ) : (
+            <>
+              <Button outlined leftIcon={<FontAwesomeIcon icon={faPlus} />} style={{ padding: '6px 16px' }}>
+                Upload
+              </Button>
+              <Button primary>Log in</Button>
+            </>
+          )}
 
-          <PopperMenu items={HEADER_MENU_ITEMS} onChange={handleMenuChange}>
-            <button className={cx('help-btn')}>
-              <FontAwesomeIcon icon={faEllipsisVertical} />
-            </button>
+          <PopperMenu items={currentuser ? HEADER_USER_MENU_ITEMS : HEADER_MENU_ITEMS} onChange={handleMenuChange}>
+            {currentuser ? (
+              <img
+                className={cx('user-avatar')}
+                src="https://p9-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/59086ef86cf4aa1f8a08af97756a65f2~c5_300x300.webp?x-expires=1654657200&x-signature=JgL6fFDYx6eyz54w6tp2w214dLk%3D"
+                alt="user_avatar"
+              />
+            ) : (
+              <button className={cx('help-btn')}>
+                <FontAwesomeIcon icon={faEllipsisVertical} />
+              </button>
+            )}
           </PopperMenu>
         </div>
       </div>

@@ -21,6 +21,7 @@ function Button({
   rightIcon,
   children,
   onClick,
+  className,
   ...passProps
 }) {
   let Comp = 'button';
@@ -30,7 +31,7 @@ function Button({
     ...passProps,
   };
 
-  const classes = cx('wrapper', {
+  const classes = cx('wrapper', className, {
     primary,
     outlinedPrimary,
     outlined,

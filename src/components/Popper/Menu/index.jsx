@@ -37,7 +37,9 @@ function Menu({ children, items = [], onChange = () => {} }) {
               data={item}
               onClick={() => {
                 if (isParrent) {
-                  setHistory((prev) => prev.push(item.children));
+                  setHistory((prev) => {
+                    return [...prev, item.children];
+                  });
                 } else {
                   onChange(item);
                 }
@@ -60,6 +62,7 @@ function Menu({ children, items = [], onChange = () => {} }) {
       interactive
       placement="bottom-end"
       appendTo={document.body}
+      onHide={() => setHistory((prev) => prev.slice(0, 1))}
     >
       {children}
     </Tippy>
