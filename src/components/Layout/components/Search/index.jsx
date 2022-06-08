@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 function Search() {
   const [searchResult, setSearchResult] = useState([]);
   const [searchText, setSearchText] = useState('');
-  const [isloading, setIsloading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [showResult, setShowResult] = useState(true);
 
   const inputSearchRef = useRef('');
@@ -28,10 +28,25 @@ function Search() {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      setSearchResult([1]);
-    }, 0);
-  }, []);
+    if (!searchText.trim()) {
+      setSearchResult([]);
+      return;
+    }
+
+    setIsLoading(true);
+
+    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchText)}&type=less`)
+      .then((res) => res.json())
+      .then((res) => {
+        if (searchText) {
+          setSearchResult(res.data);
+        }
+        setIsLoading(false);
+      })
+      .catch(() => setIsLoading(false));
+  }, [searchText]);
+
+  console.log({ searchText, searchResult });
 
   return (
     <HeadlessTippy
@@ -39,10 +54,7 @@ function Search() {
         <div className={cx('search-result')} tabIndex="-1" {...attrs}>
           <PopperWrapper>
             <h4 className={cx('search-title')}>Accounts</h4>
-            <AccountItem />
-            <AccountItem />
-            <AccountItem />
-            <AccountItem />
+            {searchResult.length > 0 && searchResult.map((result) => <AccountItem key={result.id} data={result} />)}
           </PopperWrapper>
         </div>
       )}
@@ -61,12 +73,12 @@ function Search() {
           ref={inputSearchRef}
           onFocus={() => setShowResult(true)}
         />
-        {searchText && !isloading && (
+        {searchText && !isLoading && (
           <button className={cx('clear')} onClick={handleClearSearchText}>
             <ClearIcon />
           </button>
         )}
-        {isloading && (
+        {isLoading && (
           <button className={cx('loading')}>
             <LoadingIcon />
           </button>

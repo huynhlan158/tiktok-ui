@@ -84,7 +84,10 @@
 
 // animation
 @keyframes loading {
-  100% {
+  from {
+    transform: rotate(0);
+  }
+  to {
     transform: rotate(360deg);
   }
 }
