@@ -23,7 +23,131 @@ export const HEADER_MENU_ITEMS = [
         },
         {
           code: 'vi',
-          title: 'Việt Nam',
+          title: 'Tiếng Việt',
+        },
+        {
+          code: 'fr',
+          title: 'French',
+        },
+        {
+          code: 'de',
+          title: 'German',
+        },
+        {
+          code: 'ar',
+          title: 'Arabic',
+        },
+        {
+          code: 'as',
+          title: 'Assamese',
+        },
+        {
+          code: 'bm',
+          title: 'Bambara',
+        },
+        {
+          code: 'eu',
+          title: 'Basque',
+        },
+        {
+          code: 'be',
+          title: 'Belarusian',
+        },
+        {
+          code: 'bn',
+          title: 'Bengali',
+        },
+        {
+          code: 'bi',
+          title: 'Bislama',
+        },
+        {
+          code: 'bs',
+          title: 'Bosnian',
+        },
+        {
+          code: 'bg',
+          title: 'Bulgarian',
+        },
+        {
+          code: 'fo',
+          title: 'Faroese',
+        },
+        {
+          code: 'hi',
+          title: 'Hindi',
+        },
+        {
+          code: 'uk',
+          title: 'Ukrainian',
+        },
+        {
+          code: 'cy',
+          title: 'Welsh',
+        },
+        {
+          code: 'wa',
+          title: 'Walloon',
+        },
+        {
+          code: 'wo',
+          title: 'Wolof',
+        },
+        {
+          code: 'xh',
+          title: 'Xhosa',
+        },
+        {
+          code: 'yi',
+          title: 'Yiddish',
+        },
+        {
+          code: 'yo',
+          title: 'Yoruba',
+        },
+        {
+          code: 'zu',
+          title: 'Zulu',
+        },
+        {
+          code: 'ss',
+          title: 'Swati',
+        },
+        {
+          code: 'su',
+          title: 'Sundanese',
+        },
+        {
+          code: 'sw',
+          title: 'Swahili',
+        },
+        {
+          code: 'sv',
+          title: 'Swedish',
+        },
+        {
+          code: 'ty',
+          title: 'Tahitian',
+        },
+        {
+          code: 'tg',
+          title: 'Tajik',
+        },
+        {
+          code: 'tl',
+          title: 'Tagalog',
+        },
+        {
+          code: 'th',
+          title: 'Thai',
+        },
+        {
+          code: 'bo',
+          title: 'Tibetan',
+        },
+        {
+          code: 'ti',
+          title: 'Tigrinya',
         },
       ],
     },

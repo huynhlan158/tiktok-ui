@@ -28,25 +28,27 @@ function Menu({ children, items = [], hideOnClick = false, onChange = () => {} }
           />
         )}
 
-        {current.data.map((item, index) => {
-          const isParrent = !!item.children;
+        <div className={cx('menu-body')}>
+          {current.data.map((item, index) => {
+            const isParrent = !!item.children;
 
-          return (
-            <MenuItem
-              key={index}
-              data={item}
-              onClick={() => {
-                if (isParrent) {
-                  setHistory((prev) => {
-                    return [...prev, item.children];
-                  });
-                } else {
-                  onChange(item);
-                }
-              }}
-            />
-          );
-        })}
+            return (
+              <MenuItem
+                key={index}
+                data={item}
+                onClick={() => {
+                  if (isParrent) {
+                    setHistory((prev) => {
+                      return [...prev, item.children];
+                    });
+                  } else {
+                    onChange(item);
+                  }
+                }}
+              />
+            );
+          })}
+        </div>
       </>
     );
   };

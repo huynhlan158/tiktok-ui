@@ -39,7 +39,7 @@ function Search() {
   };
 
   useEffect(() => {
-    if (!searchText.trim()) {
+    if (!searchTextDebounced.trim()) {
       setSearchResult([]);
       return;
     }
@@ -54,50 +54,57 @@ function Search() {
     fetchApi();
   }, [searchTextDebounced]);
 
-  console.log({ searchText, searchResult });
+  console.log({ searchText, searchResult, showResult });
+  console.log(inputSearchRef);
 
   return (
-    <HeadlessTippy
-      render={(attrs) => (
-        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-          <PopperWrapper>
-            <h4 className={cx('search-title')}>Accounts</h4>
-            {searchResult.length > 0 && searchResult.map((result) => <AccountItem key={result.id} data={result} />)}
-          </PopperWrapper>
-        </div>
-      )}
-      visible={showResult && searchResult.length > 0}
-      interactive
-      appendTo={document.body}
-      onClickOutside={handleHideResult}
-    >
-      <div className={cx('search')}>
-        <input
-          type="text"
-          placeholder="Search accounts and videos"
-          spellCheck={false}
-          value={searchText}
-          onChange={handleSearchTextChange}
-          ref={inputSearchRef}
-          onFocus={() => setShowResult(true)}
-        />
-        {searchText && !isLoading && (
-          <button className={cx('clear')} onClick={handleClearSearchText}>
-            <ClearIcon />
-          </button>
-        )}
-        {isLoading && (
-          <button className={cx('loading')}>
-            <LoadingIcon />
-          </button>
-        )}
-        <span className={cx('slash')}></span>
+    // Interactive tippy element may not be accessible via keyboard navigation if it is not directly after the reference element in the DOM source order.
 
-        <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
-          <SearchIcon />
-        </button>
-      </div>
-    </HeadlessTippy>
+    // Using a wrapper <div> tag around the reference element solves this by creating a new parentNode context.
+
+    <div>
+      <HeadlessTippy
+        render={(attrs) => (
+          <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+            <PopperWrapper>
+              <h4 className={cx('search-title')}>Accounts</h4>
+              {searchResult.length > 0 && searchResult.map((result) => <AccountItem key={result.id} data={result} />)}
+            </PopperWrapper>
+          </div>
+        )}
+        visible={showResult && searchResult.length > 0}
+        interactive
+        // appendTo={document.body}
+        onClickOutside={handleHideResult}
+      >
+        <div className={cx('search')}>
+          <input
+            type="text"
+            placeholder="Search accounts and videos"
+            spellCheck={false}
+            value={searchText}
+            onChange={handleSearchTextChange}
+            ref={inputSearchRef}
+            onFocus={() => setShowResult(true)}
+          />
+          {searchText && !isLoading && (
+            <button className={cx('clear')} onClick={handleClearSearchText}>
+              <ClearIcon />
+            </button>
+          )}
+          {isLoading && (
+            <button className={cx('loading')}>
+              <LoadingIcon />
+            </button>
+          )}
+          <span className={cx('slash')}></span>
+
+          <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
+            <SearchIcon />
+          </button>
+        </div>
+      </HeadlessTippy>
+    </div>
   );
 }
 
