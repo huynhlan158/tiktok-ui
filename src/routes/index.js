@@ -5,15 +5,15 @@ import Profile from '~/pages/Profile';
 import Upload from '~/pages/Upload';
 
 // layouts
-import { HeaderOnly } from '~/components/Layout';
-import routeConfig from '~/config/routes';
+import { HeaderOnly } from '~/layouts';
+import config from '~/config';
 
 // public routes
 const publicRoutes = [
-  { path: routeConfig.home, component: Home },
-  { path: routeConfig.following, component: Following },
-  { path: routeConfig.profile, component: Profile },
-  { path: routeConfig.upload, component: Upload, layout: HeaderOnly },
+  { path: config.routes.home, component: Home },
+  { path: config.routes.following, component: Following },
+  { path: config.routes.profile, component: Profile },
+  { path: config.routes.upload, component: Upload, layout: HeaderOnly },
 ];
 
 // private routes

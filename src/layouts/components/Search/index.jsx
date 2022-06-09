@@ -7,7 +7,7 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import { ClearIcon, LoadingIcon, SearchIcon } from '~/components/Icons';
 import { useDebounce } from '~/hooks';
-import * as searchServices from '~/apiServices/searchServices';
+import * as searchService from '~/services/searchService';
 
 const cx = classNames.bind(styles);
 
@@ -46,16 +46,13 @@ function Search() {
 
     const fetchApi = async () => {
       setIsLoading(true);
-      const result = await searchServices.search(searchTextDebounced, 'less');
+      const result = await searchService.search(searchTextDebounced, 'less');
       setSearchResult(result);
       setIsLoading(false);
     };
 
     fetchApi();
   }, [searchTextDebounced]);
-
-  console.log({ searchText, searchResult, showResult });
-  console.log(inputSearchRef);
 
   return (
     // Interactive tippy element may not be accessible via keyboard navigation if it is not directly after the reference element in the DOM source order.

@@ -12,7 +12,7 @@ import Search from '../Search';
 import Button from '~/components/Button';
 import { InboxIcon, MessageIcon, UploadIcon } from '~/components/Icons';
 import Image from '~/components/Image';
-import routeConfig from '~/config/routes';
+import config from '~/config/';
 import styles from './Header.module.scss';
 
 const cx = classNames.bind(styles);
@@ -27,7 +27,7 @@ function Header() {
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
-        <Link to={routeConfig.home} className={cx('logo')}>
+        <Link to={config.routes.home} className={cx('logo')}>
           <img src={images.logo} alt="tiktok_logo" />
         </Link>
 

@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { publicRoutes } from '~/routes';
-import { DefaultLayout } from '~/components/Layout';
+import MainLayout from '~/layouts';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <div className="App">
         <Routes>
           {publicRoutes.map((route, index) => {
-            const Layout = route.layout ? route.layout : route.layout === null ? Fragment : DefaultLayout;
+            const Layout = route.layout ? route.layout : route.layout === null ? Fragment : MainLayout;
 
             const Page = route.component;
 
