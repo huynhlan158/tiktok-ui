@@ -11,7 +11,7 @@ import Header from './Header';
 
 const cx = classNames.bind(styles);
 
-function Menu({ children, items = [], onChange = () => {} }) {
+function Menu({ children, items = [], hideOnClick = false, onChange = () => {} }) {
   const [history, setHistory] = useState([{ data: items }]);
   const current = history[history.length - 1];
 
@@ -63,6 +63,7 @@ function Menu({ children, items = [], onChange = () => {} }) {
       placement="bottom-end"
       appendTo={document.body}
       onHide={() => setHistory((prev) => prev.slice(0, 1))}
+      hideOnClick={hideOnClick}
     >
       {children}
     </Tippy>

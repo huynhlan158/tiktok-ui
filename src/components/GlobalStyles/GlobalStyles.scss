@@ -1,11 +1,15 @@
 @import 'normalize.css';
 
 :root {
+  // colors
   --primary: #fe2c55;
   --dark: #333;
   --light-dark: #666;
   --black: black;
   --white: white;
+
+  // fonts
+  --font-family: 'ProximaNova', sans-serif;
 
   // DefaultLayout
   --default-layout-header-height: 60px;
@@ -24,7 +28,7 @@ html {
 }
 
 body {
-  font-family: 'ProximaNova', sans-serif;
+  font-family: var(--font-family);
   font-size: 1.6rem;
   line-height: 1.5;
   text-rendering: optimizeSpeed;
@@ -33,7 +37,7 @@ body {
 
 button,
 input {
-  font-family: 'ProximaNova', sans-serif;
+  font-family: var(--font-family);
   outline: none;
   border: none;
   background-color: transparent;
