@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './Menu.module.scss';
 
@@ -13,5 +14,11 @@ function Header({ title, icon, onBack }) {
     </header>
   );
 }
+
+Header.propTypes = {
+  title: PropTypes.string,
+  icon: PropTypes.node,
+  onBack: PropTypes.func,
+};
 
 export default Header;

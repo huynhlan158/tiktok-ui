@@ -28,6 +28,7 @@ function Search() {
 
   const handleHideResult = () => {
     setShowResult(false);
+    inputSearchRef.current.blur();
   };
 
   const handleSearchTextChange = (e) => {
@@ -71,8 +72,8 @@ function Search() {
         )}
         visible={showResult && searchResult.length > 0}
         interactive
-        // appendTo={document.body}
         onClickOutside={handleHideResult}
+        // appendTo={document.body}
       >
         <div className={cx('search')}>
           <input
@@ -83,6 +84,7 @@ function Search() {
             onChange={handleSearchTextChange}
             ref={inputSearchRef}
             onFocus={() => setShowResult(true)}
+            // onBlur={handleHideResult}
           />
           {searchText && !isLoading && (
             <button className={cx('clear')} onClick={handleClearSearchText}>
