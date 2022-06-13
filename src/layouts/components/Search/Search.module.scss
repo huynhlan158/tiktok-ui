@@ -31,6 +31,7 @@
     color: var(--dark);
     padding-left: 16px;
     caret-color: var(--primary);
+    // overflow: hidden;
   }
 
   input:not(:placeholder-shown) ~ .search-btn {

@@ -54,6 +54,8 @@ function Menu({ children, items = [], hideOnClick = false, onChange = () => {} }
     );
   };
 
+  const handleResetToFirstPage = () => setHistory((prev) => prev.slice(0, 1));
+
   return (
     <Tippy
       render={(attrs) => (
@@ -65,7 +67,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = () => {} }
       interactive
       placement="bottom-end"
       appendTo={document.body}
-      onHide={() => setHistory((prev) => prev.slice(0, 1))}
+      onHide={handleResetToFirstPage}
       hideOnClick={hideOnClick}
     >
       {children}
