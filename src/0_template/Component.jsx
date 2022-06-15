@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import styles from './';
+import styles from './Component.module.scss';
 
 const cx = classNames.bind(styles);
 
